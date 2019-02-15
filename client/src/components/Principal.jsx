@@ -33,6 +33,7 @@ export class _Principal extends React.Component {
           <React.Fragment>
             <NavLink to="/login" className='button is-link' style={{ textDecoration: "none" }}>Login</NavLink>
             <NavLink to="/signup" className="button is-success" style={{ textDecoration: "none" }} >Signup</NavLink>
+            <NavLink to="/videocall" className="button danger" style={{ textDecoration: "none" }} >Videocall</NavLink>
           </React.Fragment>
         )}
 

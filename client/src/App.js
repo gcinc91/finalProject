@@ -4,6 +4,7 @@ import { Principal } from './components/Principal';
 import { Switch, Route } from 'react-router';
 import { Signup } from './components/Signup';
 import { Login } from './components/Login';
+import { VideoChat } from './components/VideoChat';
 
 
 
@@ -15,6 +16,7 @@ class App extends Component {
             <Route exact  path="/" component={Principal}/>
             <Route exact  path="/signup" component={Signup}/>
             <Route exact  path="/login" component={Login}/>
+            <Route exact  path="/videocall" component={VideoChat}/>
         </Switch>
       </div>
     );
