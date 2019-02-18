@@ -31,6 +31,16 @@
   }
 }
 
+.heroBackground{
+  background: url('./images/time_to_share.jpeg')
+}
+
+.btn{
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
 canvas {
   max-width: 100%;
   width: 320px;
@@ -40,4 +50,7 @@ video {
   max-width: 100%;
   width: 320px;
 }
+
+
+
 

@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+
+<div id="otherClients"> </div>
+<video style="float:left" id="self" width="300" height="200" autoplay="autoplay" playsinline="playsinline"></video>
+<video style="float:left" id="caller" width="300" height="200" autoplay="autoplay" playsinline="playsinline"></video>
+
+<div id="acceptCallBox"
+  style="display:none;z-index:2;position:absolute;padding:20px;left:20px;top:150px;border:red solid 2px;background-color:pink">
+  <div id="acceptCallLabel"></div>
+  <button id="callAcceptButton">Accept</button> <button id="callRejectButton">Reject</button>
+</div>

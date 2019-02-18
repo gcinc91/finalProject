@@ -14,6 +14,9 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
 
+
+
+
 mongoose
   .connect(
     "mongodb://localhost/finalproject",
@@ -96,6 +99,7 @@ app.use("/", index);
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
+
 
 
 module.exports = app;

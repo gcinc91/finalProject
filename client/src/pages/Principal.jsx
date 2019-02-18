@@ -2,13 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { AuthAPI } from "../lib/auth";
 import { logout } from "../lib/Redux/actions";
-import { NavLink } from "react-router-dom";
-
-
+import { Navbar } from "../components/Navbar";
 
 export class _Principal extends React.Component {
-
-
   handleLogout() {
     const { dispatch } = this.props;
     AuthAPI.logout()
@@ -17,27 +13,24 @@ export class _Principal extends React.Component {
       })
       .catch(e => e);
   }
-  
 
   render() {
     const { user } = this.props;
-    
+
     return (
       <div>
         {user ? (
           <div>
             <p>Welcome {user.username}</p>
+            <p>puntuation {user.puntuation}</p>
             <button onClick={() => this.handleLogout()}>LOGOUT</button>
           </div>
         ) : (
           <React.Fragment>
-            <NavLink to="/login" className='button is-link' style={{ textDecoration: "none" }}>Login</NavLink>
-            <NavLink to="/signup" className="button is-success" style={{ textDecoration: "none" }} >Signup</NavLink>
-            <NavLink to="/videocall" className="button danger" style={{ textDecoration: "none" }} >Videocall</NavLink>
+            <Navbar/>
           </React.Fragment>
         )}
-
-        </div>
+      </div>
     );
   }
 }

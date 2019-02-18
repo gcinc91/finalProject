@@ -4,12 +4,11 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  //mail: {type: String, unique:true},
-  puntuation: Number,
-  role: {type: String, enum: ["principiante", "intermedio", "profesional"]},
+  mail: {type: String, unique:true},
+  puntuation: {type: Number, default: 0},
   description: String,
-  //campus: { type: String, enum: ['Madrid', 'Barcelona', 'Miami', 'Paris', 'Berlin', 'Amsterdam', 'Mexico', 'Sao Paulo'] },
-  //course: { type: String, enum: ['WebDev', 'UX/UI', 'Data Analytics'] },
+  selectedOptionDeveloper: Object,
+  selectedOptionSysAdmin: Object,
   imgPath: {type: String, default: 'https://res.cloudinary.com/drlexgkiu/image/upload/v1544976860/avatar_2x.png'},
 }, {
   timestamps: {

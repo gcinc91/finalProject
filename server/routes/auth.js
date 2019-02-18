@@ -33,6 +33,11 @@ router.post("/login", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const mail = req.body.mail;
+  const description = req.body.description;
+  console.log(description)
+  const selectedOptionDeveloper = req.body.selectedOptionDeveloper;
+  const selectedOptionSysAdmin = req.body.selectedOptionSysAdmin;
   
 
   if (username === "" || password === "") {
@@ -51,7 +56,11 @@ router.post("/signup", (req, res, next) => {
 
     const newUser = new User({
       username,
-      password: hashPass
+      password: hashPass,
+      mail,
+      description,
+      selectedOptionDeveloper,
+      selectedOptionSysAdmin
     });
     
     newUser.save()
