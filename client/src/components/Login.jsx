@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-// import Input from "./Input";
 import { login } from "../lib/Redux/actions";
 import { AuthAPI } from "../lib/auth";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import {Navbar} from './Navbar'
 
 const LoginForm = styled.div`
 
@@ -156,6 +156,8 @@ export class _Login extends Component {
 
   render() {
     return (
+      <div>
+      <Navbar />
       <LoginForm className="form margenVertical">
         <div className="form_logo">
         <span>K-</span>Transfer
@@ -185,6 +187,7 @@ export class _Login extends Component {
         </button>
         </div>
       </LoginForm>
+      </div>
     );
   }
 }
