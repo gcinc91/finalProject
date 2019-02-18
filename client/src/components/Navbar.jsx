@@ -89,7 +89,7 @@ export class Navbar extends React.Component {
 		return (
 			<UL>
 				<ul className="nav">
-					<li className="slam-left"><Link to="/"><img src="https://seeklogo.com/images/L/left-and-right-side-of-the-brain-logo-67B4F429CE-seeklogo.com.png" width='50'/></Link></li>
+					<li className="slam-left"><Link to="/"><img src="https://seeklogo.com/images/L/left-and-right-side-of-the-brain-logo-67B4F429CE-seeklogo.com.png" alt="logo" width='50'/></Link></li>
 					<li ><Link className="items lis" to="/login">Login</Link></li>
 					<li ><Link className="items lis" to="/signup">Singup</Link></li>
 					<li ><Link className="items lis" to="/aboutus">About Us</Link></li>

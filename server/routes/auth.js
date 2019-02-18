@@ -16,9 +16,7 @@ let loginPromise = (req, user) => {
 }
 
 router.post("/login", (req, res, next) => {
-  console.log(req.body)
   passport.authenticate("local",(err, theUser, failureDetails) => {
-    console.log(req.user)
     if (err) return res.status(500).json({ message: 'Something went wrong' });
     if (!theUser) return res.status(401).json(failureDetails);
     loginPromise(req, theUser)
@@ -35,7 +33,6 @@ router.post("/signup", (req, res, next) => {
   const password = req.body.password;
   const mail = req.body.mail;
   const description = req.body.description;
-  console.log(description)
   const selectedOptionDeveloper = req.body.selectedOptionDeveloper;
   const selectedOptionSysAdmin = req.body.selectedOptionSysAdmin;
   

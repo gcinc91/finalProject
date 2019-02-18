@@ -41,6 +41,10 @@
   border-radius: 3px;
 }
 
+.margenVertical{
+  margin: 20vh auto;
+}
+
 canvas {
   max-width: 100%;
   width: 320px;

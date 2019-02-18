@@ -27,8 +27,8 @@ export class AuthAPI {
         .catch(AuthAPI.errorHandler)
     }
 
-    static signup(username, password){
-        return instance.post('/auth/signup',{username, password})
+    static signup(username, password, mail, description, selectedOptionDeveloper, selectedOptionSysAdmin){
+        return instance.post('/auth/signup',{username, password, mail, description, selectedOptionDeveloper, selectedOptionSysAdmin})
         .then((res) => res.data.user)
         .catch(AuthAPI.errorHandler)
     }
@@ -42,7 +42,7 @@ export class AuthAPI {
     //     .catch(AuthAPI.errorHandler);
     // }
 
-    static logout(username, password){
+    static logout(){
         return instance.get('/auth/logout')
         .then((res) => console.log("Logout" + res))
         .catch(AuthAPI.errorHandler)

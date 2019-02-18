@@ -23,6 +23,13 @@ export class _Principal extends React.Component {
           <div>
             <p>Welcome {user.username}</p>
             <p>puntuation {user.puntuation}</p>
+            {user.selectedOptionDeveloper.map(
+              (e,i) => (<p key={i}>Array de Developer {e.value}</p>)
+            )}
+            {user.selectedOptionSysAdmin.map(
+              (e,i) => (<p key={i}>Array de Developer {e.value}</p>)
+            )}
+            
             <button onClick={() => this.handleLogout()}>LOGOUT</button>
           </div>
         ) : (

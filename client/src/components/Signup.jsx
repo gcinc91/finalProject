@@ -103,10 +103,10 @@ export class _Signup extends Component {
         />
 
 
-        <div class="field" style={{maxWidth: 500}}>
-          <div class="control">
+        <div className="field" style={{maxWidth: 500}}>
+          <div className="control">
           <label>Description</label>  
-            <textarea onChange={(e) => this.handleDescription(e)} class="textarea is-info" placeholder="Tell me about you and your wishes and what can you contribute..." />
+            <textarea onChange={(e) => this.handleDescription(e)} className="textarea is-info" placeholder="Tell me about you and your wishes and what can you contribute..." />
           </div>
         </div>
         <div  style={{maxWidth: 500}}>
