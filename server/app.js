@@ -39,7 +39,7 @@ const debug = require("debug")(
 const app = express();
 
 // Middleware Setup
-const whitelist = ["http://localhost:3000", "http://localhost:3001"];
+const whitelist = ["http://localhost:3000", "http://localhost:8443"];
 const corsOptions = {
   origin: function(origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -99,6 +99,9 @@ app.use("/", index);
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
+
+const dataRoutes = require("./routes/data");
+app.use("/data", dataRoutes);
 
 
 

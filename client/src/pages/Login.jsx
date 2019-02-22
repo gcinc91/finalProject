@@ -3,7 +3,7 @@ import { login } from "../lib/Redux/actions";
 import { AuthAPI } from "../lib/auth";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import {Navbar} from './Navbar'
+import {Navbar} from '../components/Navbar'
 
 const LoginForm = styled.div`
 
@@ -20,7 +20,7 @@ const LoginForm = styled.div`
   }
 
   .form {
-    width: 256px;
+    width: 500px;
     width: 16rem;
     display: flex;
     flex-direction:column;
@@ -61,8 +61,8 @@ const LoginForm = styled.div`
   }
 
   .form_inputs {
-    width: 256px;
-    width: 16rem;
+    /* width: 500px; */
+    width: 23rem;
     color: rgb(189, 189, 189);
     margin: 16px 0;
     margin: 1rem 0;
@@ -104,7 +104,7 @@ const LoginForm = styled.div`
   }
 
   .form_button {
-    width: 300px;
+    width: 200px;
     height: 36px;
     margin-top: 16px;
     padding-left: 16px;

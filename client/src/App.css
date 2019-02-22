@@ -76,5 +76,11 @@ video {
   margin-top: 1em;
 }
 
+.frame{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
 
 

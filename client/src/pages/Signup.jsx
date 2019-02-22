@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { login } from "../lib/Redux/actions";
 import Select from "react-select";
 import styled from "styled-components";
-import {Navbar} from './Navbar'
+import {Navbar} from '../components/Navbar'
 
 const Title = styled.div`
   @import url("https://fonts.googleapis.com/css?family=Open+Sans");
@@ -46,7 +46,7 @@ const Btn = styled.div`
     width: 200px;
     height: 36px;
     border-radius: 18px;
-    background-color: #1c89ff;
+    background-color: #436b95;
     border: solid 1px transparent;
     color: #fff;
     font-size: 18px;

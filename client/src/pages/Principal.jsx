@@ -16,11 +16,13 @@ export class _Principal extends React.Component {
 
   render() {
     const { user } = this.props;
+    console.log(user)
 
     return (
       <div>
         {user ? (
           <div>
+            <Navbar/>
             <p>Welcome {user.username}</p>
             <p>puntuation {user.puntuation}</p>
             {user.selectedOptionDeveloper.map(
