@@ -61,9 +61,18 @@ app.use(
   })
 );
 
+app.use(
+  require("node-sass-middleware")({
+    src: path.join(__dirname, "lib"),
+    dest: path.join(__dirname, "lib"),
+    sourceMap: true
+  })
+);
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "lib")));
 // app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 hbs.registerHelper("ifUndefined", (value, options) => {
@@ -99,6 +108,9 @@ app.use("/auth", authRoutes);
 
 const dataRoutes = require("./routes/data");
 app.use("/data", dataRoutes);
+
+const vcallRoutes = require("./routes/vcall");
+app.use("/vcall", vcallRoutes);
 
 app.use('*', (req,res) => {
   res.sendFile(path.join(__dirname,'public/index.html'));

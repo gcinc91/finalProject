@@ -4,7 +4,7 @@ import { Principal } from './pages/Principal';
 import { Switch, Route } from 'react-router';
 import { Signup } from './pages/Signup';
 import { Login } from './pages/Login';
-import { AboutUs } from './pages/AboutUs';
+// import { AboutUs } from './pages/AboutUs';
 import Searchbar from './components/Searchbar';
 
 

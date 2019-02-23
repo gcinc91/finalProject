@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const instance = axios.create({
-    baseURL: process.env.NODE_ENV == "production" ? "": 'https://localhost:8443',
+    baseURL: process.env.NODE_ENV === "production" ? "": 'https://localhost:8443',
     timeout: 2000,
     withCredentials: true,
 });
@@ -18,7 +18,7 @@ export class GetData{
     static users(s){
         console.log('Por lo menos aqui llega')
         return instance.get('/data/filters', s)
-        .then((res) => console.log('esto es el then'))//res.data)
+        .then((res) => res.data)
         .catch(GetData.errorHandler)
     }
 
