@@ -4,6 +4,7 @@
 // $ node bin/seeds.js
 
 require('dotenv').load();
+require('dotenv').config();
 
 
 const mongoose = require("mongoose");
@@ -13,7 +14,7 @@ const User = require("../models/User");
 const bcryptSalt = 10;
 
 mongoose
-  .connect('mongodb://localhost/server', {useNewUrlParser: true})
+  .connect(process.env.MONGO_URL, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
