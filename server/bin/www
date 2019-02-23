@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const https = require("https");
+const http = require("http");
 const fs = require("fs");
 
 const rtcServer = require("../rtc");
@@ -24,15 +25,22 @@ app.use((err, req, res, next) => {
   }
 });
 
-let server = https
-  .createServer(
+let server;
+if (process.env.NODE_ENV == "production") {
+  server = http.createServer(app);
+  console.log("HTTP Production Server");
+} else {
+  console.log("HTTPS DEBUG SERVER");
+  server = https.createServer(
     {
       key: fs.readFileSync("./server/certs/localhost.key"),
       cert: fs.readFileSync("./server/certs/localhost.cert")
     },
     app
-  )
-  .listen(process.env.PORT);
+  );
+}
+
+server.listen(process.env.PORT);
 
 // Start web RTC server with socketio
 rtcServer(server);
