@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').load();
 
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -14,12 +14,9 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
 
-
-
-
 mongoose
   .connect(
-    "mongodb://localhost/finalproject",
+    process.env.MONGO_URL,
     { useNewUrlParser: true }
   )
   .then(x => {
@@ -31,7 +28,7 @@ mongoose
     console.error("Error connecting to mongo", err);
   });
 
-const app_name = require("./package.json").name;
+const app_name = require("../package.json").name;
 const debug = require("debug")(
   `${app_name}:${path.basename(__filename).split(".")[0]}`
 );
@@ -67,7 +64,7 @@ app.use(
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 app.use(express.static(path.join(__dirname, "public")));
-app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
+// app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 hbs.registerHelper("ifUndefined", (value, options) => {
   if (arguments.length < 2)
@@ -94,14 +91,18 @@ app.use(
 app.use(flash());
 require("./passport")(app);
 
-const index = require("./routes/index");
-app.use("/", index);
+// const index = require("./routes/index");
+// app.use("/", index);
 
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
 const dataRoutes = require("./routes/data");
 app.use("/data", dataRoutes);
+
+app.use('*', (req,res) => {
+  res.sendFile(path.join(__dirname,'public/index.html'));
+});
 
 
 

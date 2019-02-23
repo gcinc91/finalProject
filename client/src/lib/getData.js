@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const instance = axios.create({
-    baseURL: 'https://localhost:8443',
+    baseURL: process.env.NODE_ENV == "production" ? "": 'https://localhost:8443',
     timeout: 2000,
     withCredentials: true,
 });

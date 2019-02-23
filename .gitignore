@@ -1,0 +1,5 @@
+# para que no suba el .env
+.env
+
+# Dependency directory
+node_modules
