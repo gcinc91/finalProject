@@ -15,9 +15,14 @@ export class GetData{
         throw e;
     }
 
-    static users(s){
-        console.log('Por lo menos aqui llega')
-        return instance.get('/data/filters', s)
+    static users(filter='playa'){
+        return instance.post('/data/users', {filter})
+        .then((res) => res.data)
+        .catch(GetData.errorHandler)
+    }
+
+    static allusers(){
+        return instance.post('/data/allusers')
         .then((res) => res.data)
         .catch(GetData.errorHandler)
     }

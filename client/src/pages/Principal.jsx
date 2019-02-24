@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { AuthAPI } from "../lib/auth";
 import { logout } from "../lib/Redux/actions";
 import { Navbar } from "../components/Navbar";
+import { PerfilUser } from "../components/PerfilUser";
+import { AllUsers } from "../components/AllUsers";
 
 export class _Principal extends React.Component {
   handleLogout() {
@@ -16,27 +18,28 @@ export class _Principal extends React.Component {
 
   render() {
     const { user } = this.props;
-    console.log(user)
+    console.log(user);
 
     return (
       <div>
         {user ? (
           <div>
-            <Navbar/>
-            <p>Welcome {user.username}</p>
-            <p>puntuation {user.puntuation}</p>
-            {user.selectedOptionDeveloper.map(
-              (e,i) => (<p key={i}>Array de Developer {e.value}</p>)
-            )}
-            {user.selectedOptionSysAdmin.map(
-              (e,i) => (<p key={i}>Array de Developer {e.value}</p>)
-            )}
-            
+            <Navbar />
+            <PerfilUser
+              username={user.username}
+              selectedOptionDeveloper={user.selectedOptionDeveloper}
+              selectedOptionSysAdmin={user.selectedOptionSysAdmin}
+              imgPath={user.imgPath}
+              mail={user.mail}
+              description={user.description}
+            />
+
             <button onClick={() => this.handleLogout()}>LOGOUT</button>
           </div>
         ) : (
           <React.Fragment>
-            <Navbar/>
+            <Navbar />
+            <AllUsers/>
           </React.Fragment>
         )}
       </div>

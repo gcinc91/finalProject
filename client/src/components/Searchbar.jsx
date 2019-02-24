@@ -64,8 +64,8 @@ class List extends React.Component {
                 // check to see if the current list item includes the search term
                 // If it does, it will be added to newList. Using lowercase eliminates
                 // issues with capitalization in search terms and search content
-        GetData.users('algo')
-          .then(res => console.log('then del filter en searchbar'))
+        GetData.allusers()
+          .then(user => console.log(user))
           .catch(e => 'error del catch de searchbar' + e)
         return lc.includes(filter);
       });
