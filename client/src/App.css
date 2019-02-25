@@ -84,3 +84,18 @@ video {
 }
 
 
+
+.boxUsers{
+  color: blue;
+  display:flex;
+  align-content: flex-start;
+  flex-direction:row;
+  flex-wrap: wrap;
+}
+
+.box{
+  margin:20px;
+  height: 40vh;
+}
+
+

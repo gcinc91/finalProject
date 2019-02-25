@@ -22,10 +22,15 @@ export class AllUsers extends React.Component {
     //console.log(data);
     return (
       <div>
-        <h1>All Users</h1>
+        <h1>Users</h1>
+        <div className='boxUsers' >
         {data.map((e) => (
-             <CardUser key={e._id} props={e} />
+            <CardUser className='boxUsers' key={e._id} props={e} />
+             
            ))}
+
+        </div>
+        
       </div>
     );
   }
