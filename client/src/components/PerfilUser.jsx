@@ -1,21 +1,39 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-export const PerfilUser = ({username, selectedOptionDeveloper ,selectedOptionSysAdmin, imgPath, mail, description}) => {
-  // const {username, selectedOptionDeveloper ,selectedOptionSysAdmin, imgPath, mail, description} = props;
+
+
+export class _PerfilUser extends React.Component {
+
+
+  thishandleClase(e){
+
+  }
+  
+  render(){
+    const { user } = this.props;
+
 
   return (
   <div className="">  
-    <img className="" src={imgPath} alt='foto'/>
-    <p className="">{username}</p>
+    <img className="" src={user.imgPath} alt='foto'/>
+    <p className="">{user.username}</p>
 
-    {selectedOptionDeveloper.map((e, i) => 
+    {user.selectedOptionDeveloper.map((e, i) => 
       <p key={i}>{e.value}</p>
     )}
-    {selectedOptionSysAdmin.map((e, i) => 
+    {user.selectedOptionSysAdmin.map((e, i) => 
       <p key={i}>{e.value}</p>
     )}
-    <p className="">{mail}</p>
-    <p className="">{description}</p>
+    <p className="">{user.mail}</p>
+    <p className="">{user.description}</p>
+
+    {/* <button onClick={() => thishandleClase()}> Quiero una Clase</button> */}
+    <Link to="/newclase">Pideme una Clase</Link>
     
-  </div>)
+  </div>
+  )}
 };
+
+export const PerfilUser = connect(store => store)(_PerfilUser);

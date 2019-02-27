@@ -7,9 +7,10 @@ export const CardUser = ({ props }) => {
     selectedOptionSysAdmin,
     imgPath,
     description,
-    create_at,
-    puntiation
+    puntuation,
+    create_at
   } = props;
+
 
   // console.log(selectedOptionDeveloper)
   // console.log(selectedOptionSysAdmin[0].value)
@@ -50,7 +51,7 @@ export const CardUser = ({ props }) => {
             </div>
             <div className="media-content">
               <p className="title is-4">{username}</p>
-              <p className="subtitle is-6">Rating: {puntiation}</p>
+              <p className="subtitle is-6">Rating: {puntuation}</p>
             </div>
           </div>
 

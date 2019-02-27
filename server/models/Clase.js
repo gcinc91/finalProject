@@ -3,9 +3,9 @@ const Schema   = mongoose.Schema;
 
 const claseSchema = new Schema({
   name: String,
-  id_user_teacher: String,
+  id_user_teacher: {type:Schema.Types.ObjectId, ref:'User'},
   description: String,
-  capacity:Number,
+  capacity:{type: Number, default: 1},
   date: Date,
 }, {
   timestamps: {

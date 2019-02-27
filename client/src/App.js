@@ -6,6 +6,7 @@ import { Signup } from './pages/Signup';
 import { Login } from './pages/Login';
 // import { AboutUs } from './pages/AboutUs';
 import Searchbar from './components/Searchbar';
+import { NewClase } from './components/NewClase';
 
 
 
@@ -18,6 +19,7 @@ class App extends Component {
             <Route exact  path="/signup" component={Signup}/>
             <Route exact  path="/login" component={Login}/>
             <Route exact  path="/aboutus" component={Searchbar}/>
+            <Route exact  path="/newclase" component={NewClase}/>
         </Switch>
       </div>
     );

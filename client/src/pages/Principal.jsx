@@ -28,14 +28,7 @@ export class _Principal extends React.Component {
             <div className='containerHome'>
 
             
-            <PerfilUser
-              username={user.username}
-              selectedOptionDeveloper={user.selectedOptionDeveloper}
-              selectedOptionSysAdmin={user.selectedOptionSysAdmin}
-              imgPath={user.imgPath}
-              mail={user.mail}
-              description={user.description}
-            />
+            <PerfilUser/>
            
 
             <button onClick={() => this.handleLogout()}>LOGOUT</button>
