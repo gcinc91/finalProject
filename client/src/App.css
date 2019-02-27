@@ -88,14 +88,26 @@ video {
 .boxUsers{
   color: blue;
   display:flex;
+  justify-content: center;
   align-content: flex-start;
   flex-direction:row;
   flex-wrap: wrap;
 }
 
 .box{
-  margin:20px;
-  height: 40vh;
+  margin: 1em;
+  width: 300px;
+  background-color: #21364e !important;
+  padding: 5px !important;
+  width: 20vw !important;
+  overflow: hidden !important;
 }
+
+.textCard{
+  width: 20vw !important;
+  height: 10vh !important;
+}
+
+
 
 

@@ -7,8 +7,8 @@ const userSchema = new Schema({
   mail: {type: String, unique:true},
   puntuation: {type: Number, default: 0},
   description: String,
-  selectedOptionDeveloper: Array,
-  selectedOptionSysAdmin: Array,
+  selectedOptionDeveloper: {type: Array, default: {value: ''}},
+  selectedOptionSysAdmin: {type: Array, default: {value: ''}},
   imgPath: {type: String, default: 'https://res.cloudinary.com/drlexgkiu/image/upload/v1544976860/avatar_2x.png'},
 }, {
   timestamps: {

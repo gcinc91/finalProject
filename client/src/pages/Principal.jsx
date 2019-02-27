@@ -25,6 +25,9 @@ export class _Principal extends React.Component {
         {user ? (
           <div>
             <Navbar />
+            <div className='containerHome'>
+
+            
             <PerfilUser
               username={user.username}
               selectedOptionDeveloper={user.selectedOptionDeveloper}
@@ -33,8 +36,10 @@ export class _Principal extends React.Component {
               mail={user.mail}
               description={user.description}
             />
+           
 
             <button onClick={() => this.handleLogout()}>LOGOUT</button>
+            </div>
           </div>
         ) : (
           <React.Fragment>
