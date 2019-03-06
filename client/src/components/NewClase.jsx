@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { login } from "../lib/Redux/actions";
-import Select from "react-select";
 import styled from "styled-components";
 import {Navbar} from '../components/Navbar'
 import { GetData } from "../lib/getData";
@@ -67,43 +65,34 @@ export class _NewClase extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
-      password: "",
-      mail: "",
+      date: null,
       description: "",
-      selectedOptionDeveloper: null,
-      selectedOptionSysAdmin: null
     };
   }
 
   handleSubmit() {
     const {
-      username,
-      password,
-      mail,
-      description,
+      date,
+      description
+      
     } = this.state;
-    const { dispatch, history } = this.props;
-    GetData.signup(
-      username,
-      password,
-      mail,
-      description,
+    const { history } = this.props;
+    GetData.newclase(
+      date,
+      description
     )
-      .then(user => {
-        dispatch(login(user));
-      }, history.push("/"))
-      .catch(e => console.log("catch de handlesubmit" + e));
+      .then(e => {
+        history.push("/")
+        console.log('Creada nueva clase con exito')
+      })
+      .catch(e => console.log("catch de handlesubmit de newclase " + e));
   }
 
-  handleName(e) {
-    this.setState({ username: e.target.value });
-  }
-  handleMail(e) {
-    this.setState({ mail: e.target.value });
-  }
   handleDescription(e) {
     this.setState({ description: e.target.value });
+  }
+  handleTime(e) {
+    this.setState({ date: e.target.value });
   }
 
   
@@ -119,13 +108,13 @@ export class _NewClase extends Component {
               <span>K-</span>Transfer
             </div>
             <div className="form_title">
-              <span>C</span>lase
+            <p><span>P</span>eticion   <span>C</span>lase</p>
             </div>
           </Title>
           <div className="field">
             <div className="control margenAbajo">
               <label>Fecha y Hora</label>
-              <input type="datetime-local" className="input is-info"  min="2018-12-22T00:00"/>
+              <input onChange={e => this.handleTime(e)} type="datetime-local" className="input is-info"  min="2018-12-22T00:00"/>
             </div>
           </div>
 

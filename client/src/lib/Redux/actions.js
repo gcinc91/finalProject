@@ -26,9 +26,9 @@ export const clearMessages = () => {
   }
 }
 
-export const imgUpload = (e) => {
-  return {
-      type: "IMG_UPLOAD",
-      image: e.image
-  }
-}
+// export const imgUpload = (e) => {
+//   return {
+//       type: "IMG_UPLOAD",
+//       image: e.image
+//   }
+// }

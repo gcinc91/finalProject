@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { connect } from "react-redux";
+
 
 
  const UL = styled.ul `
@@ -84,8 +86,9 @@ ul li a .contact {
 }
 `
 
-export class Navbar extends React.Component {
+class _Navbar extends React.Component {
 	render() {
+    const {user} = this.props;
 		return (
 			<UL>
 				<ul className="nav">
@@ -93,9 +96,18 @@ export class Navbar extends React.Component {
 					<li ><Link className="items lis" to="/login">Login</Link></li>
 					<li ><Link className="items lis" to="/signup">Singup</Link></li>
 					<li ><Link className="items lis" to="/aboutus">About Us</Link></li>
+					<li ><Link className="items lis" to="/vcall">Video Llamada</Link></li>
+          {user ?
+          <li ><Link className="items lis" to="/miprofile">Perfil</Link></li>
+            :
+            null
+          }
 				</ul>
 			</UL>
 			
 		);
 	}
 }
+
+
+export const Navbar = connect(store => store)(_Navbar);

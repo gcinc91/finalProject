@@ -97,7 +97,8 @@ export class _Signup extends Component {
       mail: "",
       description: "",
       selectedOptionDeveloper: null,
-      selectedOptionSysAdmin: null
+      selectedOptionSysAdmin: null,
+      error: null
     };
   }
 
@@ -120,8 +121,14 @@ export class _Signup extends Component {
       selectedOptionSysAdmin
     )
       .then(user => {
-        dispatch(login(user));
-      }, history.push("/"))
+        if (user.data.message) {
+          this.setState({ error: user.data.message });
+          return;
+        }
+        let usuario = user.data.user
+        dispatch(login(usuario));
+        history.push("/")
+      })
       .catch(e => console.log("catch de handlesubmit" + e));
   }
 
@@ -149,7 +156,7 @@ export class _Signup extends Component {
   };
 
   render() {
-    const { selectedOptionDeveloper, selectedOptionSysAdmin } = this.state;
+    const { selectedOptionDeveloper, selectedOptionSysAdmin, error } = this.state;
     return (
       <div>
         <Navbar />
@@ -220,6 +227,12 @@ export class _Signup extends Component {
               Signup
             </button>
           </Btn>
+          {error ? (
+              <div className="container">
+                <h1 className="title">Error</h1>
+                <h2 className="subtitle">{error}</h2>
+              </div>
+        ) : null}
         </div>
       </div>
     );

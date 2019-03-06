@@ -140,7 +140,8 @@ export class _Login extends Component {
     super();
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      error: null
     };
   }
 
@@ -149,12 +150,20 @@ export class _Login extends Component {
     const { dispatch, history } = this.props;
     AuthAPI.login(username, password)
       .then(user => {
+        if (user.message) {
+          this.setState({ error: user.message });
+          return;
+        }
         dispatch(login(user));
-      }, history.push("/"))
+        history.push("/miprofile")
+      })
       .catch(e => "have problems! " + e);
   }
-
+ 
   render() {
+
+
+    const {error} = this.state;
     return (
       <div>
       <Navbar />
@@ -186,6 +195,12 @@ export class _Login extends Component {
           Login
         </button>
         </div>
+        {error ? (
+              <div className="container">
+                <h1 className="title">Error</h1>
+                <h2 className="subtitle">{error}</h2>
+              </div>
+        ) : null}
       </LoginForm>
       </div>
     );

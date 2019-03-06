@@ -31,12 +31,12 @@ export const rootReducer = (store = initialStore, action) => {
                 user: null
             }
         break;
-        case "IMG_UPLOAD":
-            store = {
-                ...store,
-                image: action.image
-            }
-        break;
+        // case "IMG_UPLOAD":
+        //     store = {
+        //         ...store,
+        //         image: action.image
+        //     }
+        // break;
         default: return store
     }
     // For now, don't handle any actions

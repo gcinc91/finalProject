@@ -27,20 +27,20 @@ export class AuthAPI {
         .catch(AuthAPI.errorHandler)
     }
 
-    static signup(username, password, mail, description, selectedOptionDeveloper, selectedOptionSysAdmin){
-        return instance.post('/auth/signup',{username, password, mail, description, selectedOptionDeveloper, selectedOptionSysAdmin})
-        .then((res) => res.data.user)
+    static signup(username, password, mail, description, selectedOptionDeveloper, selectedOptionSysAdmin,imgPath){
+        return instance.post('/auth/signup',{username, password, mail, description, selectedOptionDeveloper, selectedOptionSysAdmin,imgPath})
+        .then((res) =>res)
         .catch(AuthAPI.errorHandler)
     }
 
-    // static upload(file){
-    //     return instance
-    //     .post("/auth/image", file, {
-    //       headers: { "Content-Type": "multipart/form-data" }
-    //     })
-    //     .then(res => res)
-    //     .catch(AuthAPI.errorHandler);
-    // }
+    static upload(file){
+        return instance
+        .post("/auth/image", file, {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+        .then(res => res)
+        .catch(AuthAPI.errorHandler);
+    }
 
     static logout(){
         return instance.get('/auth/logout')

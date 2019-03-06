@@ -109,5 +109,34 @@ video {
 }
 
 
+.card{
+  height: 100%;
+  overflow-y: scroll
+}
+
+.imageProfile{
+  margin:200px
+}
 
 
+.boxLogin{
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-direction:column;
+  height: 60vh;
+  line-height: 5em
+}
+
+.boxesPerfil{
+  display: flex;
+  flex-direction: row;
+}
+
+.seccionDatos{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}

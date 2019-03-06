@@ -100,6 +100,14 @@ app.use(
 app.use(flash());
 require("./passport")(app);
 
+app.use((req,res,next)=>{
+  res.locals.user = req.user;
+  let messages = [...req.flash('error'),...req.flash('info')];
+  debug(messages);
+  res.locals.messages = messages;
+  next();
+})
+
 //  const index = require("./routes/index");
 //  app.use("/", index);
 

@@ -18,7 +18,7 @@ let loginPromise = (req, user) => {
 router.post("/login", (req, res, next) => {
   passport.authenticate("local",(err, theUser, failureDetails) => {
     if (err) return res.status(500).json({ message: 'Something went wrong' });
-    if (!theUser) return res.status(401).json(failureDetails);
+    if (!theUser) return res.json({ message: "usuario o contraseña incorrecta" });
     loginPromise(req, theUser)
       .then(() => res.status(200).json(req.user))
       .catch(e => res.status(500).json({ message: e.message }));
@@ -35,16 +35,23 @@ router.post("/signup", (req, res, next) => {
   const description = req.body.description;
   const selectedOptionDeveloper = req.body.selectedOptionDeveloper;
   const selectedOptionSysAdmin = req.body.selectedOptionSysAdmin;
+  const imgPath = req.body.selectedOptionSysAdmin.imgPath;
   
 
   if (username === "" || password === "") {
+    res.json({ message: "Indica usuario y contraseña" });
+    return;
+  }
+
+  if (mail === "") {
+    res.json({ message: "tienes que poner un correo electronico" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
-    
     if (user !== null) {
-      return;
+      console.log('te va devolver el mensaje')
+      return res.json({ message: "El usuario ya existe" });
     }
     
 
@@ -57,7 +64,8 @@ router.post("/signup", (req, res, next) => {
       mail,
       description,
       selectedOptionDeveloper,
-      selectedOptionSysAdmin
+      selectedOptionSysAdmin,
+      imgPath
     });
     
     newUser.save()
@@ -77,13 +85,12 @@ router.get("/auth/loggedin", (req, res) => {
 
 
 router.get("/logout", (req, res) => {
-  console.log('entra en la ruta logout')
   req.logout();
   res.json({succes:"Done"});
 });
 
-// router.post("/image", uploadCloud.single("photo"), (req, res, next) => {
-//   res.json(req.file);
-// });
+router.post("/image", uploadCloud.single("photo"), (req, res, next) => {
+  User.findByIdAndUpdate(req.user._id, {imgPath:req.file.url }, {new:true} ).then(user => res.json(user))
+});
 
 module.exports = router;
