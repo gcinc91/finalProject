@@ -27,7 +27,8 @@ router.post("/newclase", (req, res) => {
   const description = req.body.description;
   const idProfe = req.body.idProfe;
   const idUserLogin = req.body.idUserLogin;
-  console.log(idUserLogin);
+  
+ 
 
   if (date === null || description === "") {
     console.log("aqui llega");
@@ -66,7 +67,16 @@ router.post("/user/:id", (req, res) => {
 router.post("/impartirClases", (req, res) => {
   let { id } = req.body;
   Clase.find({ id_user_teacher: id })
-    .then(user => res.json(user))
+    .then(clase => res.json(clase))
+    .catch(e => "error del back, llamada a users " + e);
+});
+router.post("/tengoAprender", (req, res) => {
+  let { id } = req.body;
+
+  Clase.findById( id)
+    .then(clase => {
+      res.json(clase)}
+    )
     .catch(e => "error del back, llamada a users " + e);
 });
 
