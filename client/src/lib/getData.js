@@ -40,7 +40,12 @@ export class GetData{
 
     static impartirClases(id){
         return instance.post('data/impartirClases', {id})
-        .then(res => res)
+        .then(res => res.data)
+        .catch(GetData.errorHandler) 
+    }
+    static tengoAprender(id){
+        return instance.post('data/tengoAprender', {id})
+        .then(res => res.data)
         .catch(GetData.errorHandler) 
     }
 

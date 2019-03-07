@@ -23,7 +23,7 @@ class App extends Component {
             <Route exact  path="/newclase" component={NewClase}/>
             <Route exact  path="/user/:id" component={OneUser}/> 
             <Route exact  path="/miprofile" component={MiProfile}/> 
-            <Route exact path='/vcall' component={() => { window.location = 'https://localhost:8443/vcall'; return null;} }/>
+            <Route exact path='/vcall/:id' component={() => { window.location = 'https://localhost:8443/vcall'; return null;} }/>
         </Switch>
       </div>
     );
