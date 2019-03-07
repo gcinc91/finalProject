@@ -20,7 +20,7 @@ mongoose
 let clases = [
   {
     name: 'Clase de programacion',
-    id_user_profesor: "5c76d6531c8ee04d02b63866",
+    id_user_profesor: "",
     description: "Que es la programacion, podemos hacernos camisetas tal.. ",
     capacity: 1,
     date: new Date(2019, 7, 7, 17, 0),
@@ -34,14 +34,14 @@ let clases = [
   },
   {
     name: 'Clase de programacion 3',
-    id_user_profesor: "5c76d6531c8ee04d02b63867",
+    id_user_profesor: "",
     description: "Que es la programacion, podemos hacernos camisetas tal.. 3",
     capacity: 3,
     date: new Date(2019, 5, 7, 17, 0),
   },
   {
     name: 'Clase de programacion 4',
-    id_user_profesor: "5c76d6531c8ee04d02b63868",
+    id_user_profesor: "",
     description: "Que es la programacion, podemos hacernos camisetas tal..4 ",
     capacity: 4,
     date: new Date(2019, 4, 7, 17, 0),

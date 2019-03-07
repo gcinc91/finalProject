@@ -7,7 +7,7 @@ import { Login } from './pages/Login';
 import Searchbar from './components/Searchbar';
 import { NewClase } from './components/NewClase';
 import { OneUser } from './pages/OneUser';
-import { MiProfile } from './components/MiProfile';
+import { MiProfile } from './pages/MiProfile';
 
 
 

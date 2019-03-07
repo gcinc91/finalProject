@@ -3,10 +3,22 @@ import { connect } from "react-redux";
 import { AuthAPI } from "../lib/auth";
 import { login } from "../lib/Redux/actions";
 import { logout } from "../lib/Redux/actions";
-import { Navbar } from "./Navbar";
+import { Navbar } from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { GetData } from "../lib/getData";
+import { MisClases } from "../components/MisClases";
 
 class _MiProfile extends React.Component {
+
+  constructor(){
+    super()
+    this.state ={
+      verClase: false,
+      clasesArr: []
+    }
+  }
+
+
   handleImgChange = e => {
     const { dispatch } = this.props;
     console.log(this.props);
@@ -28,8 +40,21 @@ class _MiProfile extends React.Component {
       .catch(e => e);
   }
 
+  viewClases() {
+    const { verClase, clasesArr } = this.state; 
+    const {user} = this.props;   
+    GetData.impartirClases(user._id).then(clases => {
+        console.log(clases)
+        this.setState({ clasesArr: clases})
+        this.setState({ verClase: !verClase })
+      })
+    
+  }
+
   render() {
     const { user } = this.props;
+    const { verClase, clasesArr} = this.state;
+    console.log(clasesArr)
 
     return (
       <div>
@@ -58,7 +83,20 @@ class _MiProfile extends React.Component {
               <p className="">{user.mail}</p>
               <p className="">{user.description}</p>
               <button onClick={() => this.handleLogout()}>LOGOUT</button>
-            </section>
+            </section> 
+            <div>
+              <h2>Clases a impartir</h2>
+              <label class="switch">
+                <input type="checkbox" onClick={() => this.viewClases()} />
+                <span class="slider round" />
+              </label>
+            </div>
+            {verClase ?
+            <MisClases clases={this.state.clases}/>
+            :
+            null
+
+            }
 
             
           </div>

@@ -19,7 +19,7 @@ class _OneUser extends React.Component {
     const {id} = this.props.match.params;
     GetData.user(id).then(user => {
       this.setState({userProfe: user})
-    })
+    }) 
   }
 
 

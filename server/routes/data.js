@@ -25,20 +25,30 @@ router.post("/allusers", (req, res) => {
 router.post("/newclase", (req, res) => {
   const date = req.body.date;
   const description = req.body.description;
+  const idProfe = req.body.idProfe;
+  const idUserLogin = req.body.idUserLogin;
+  console.log(idUserLogin);
 
   if (date === null || description === "") {
-    return;
+    console.log("aqui llega");
+    return res.json({ message: "Tienes que poner fecha, hora  y descripcion" });
   }
-
+  console.log("id del profe " + idProfe);
   const Clasedata = new Clase({
     date,
-    description
+    description,
+    id_user_teacher: idProfe
   });
 
   Clasedata.save()
     .then(data => {
       console.log(data);
-      res.json(data);
+      User.findByIdAndUpdate(
+        { _id: idUserLogin },
+        { $push: { clasesPendientes: data._id } },
+        { new: true }
+      ).then(res => console.log("clase guardada en usuario"));
+      res.json({ message: "Clase guardada correctamente" });
     })
     .catch(err => {
       console.log("error del cathc clasedata back");
@@ -47,9 +57,16 @@ router.post("/newclase", (req, res) => {
 });
 
 router.post("/user/:id", (req, res) => {
-  let {id} = req.body;
-  console.log(id);
-  User.findById(id).then(user =>  res.json( user ))
+  let { id } = req.body;
+  User.findById(id)
+    .then(user => res.json(user))
+    .catch(e => "error del back, llamada a users " + e);
+});
+
+router.post("/impartirClases", (req, res) => {
+  let { id } = req.body;
+  Clase.find({ id_user_teacher: id })
+    .then(user => res.json(user))
     .catch(e => "error del back, llamada a users " + e);
 });
 

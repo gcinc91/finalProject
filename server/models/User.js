@@ -9,6 +9,7 @@ const userSchema = new Schema({
   description: String,
   selectedOptionDeveloper: {type: Array, default: {value: ''}},
   selectedOptionSysAdmin: {type: Array, default: {value: ''}},
+  clasesPendientes: {type: Array, default:['']},
   imgPath: {type: String, default: 'https://res.cloudinary.com/drlexgkiu/image/upload/v1544976860/avatar_2x.png'},
 }, {
   timestamps: {

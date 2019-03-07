@@ -4,9 +4,7 @@ export const CardUser = ({ props }) => {
   const {
     username,
     imgPath,
-    description,
-    puntuation,
-    create_at
+    puntuation    
   } = props;
 
 
@@ -15,12 +13,23 @@ export const CardUser = ({ props }) => {
     <div className='box'>
       <div className="card">
         <div className="card-image">
-          <figure className="image">
+          <div className="image container-image ">
             <img
               src="http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png"
               alt="photo_user"
+              className='item'
             />
-          </figure>
+            <img
+              src="http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png"
+              alt="photo_user"
+              className='item'
+            />
+            <img
+              src="http://www.stickpng.com/assets/images/584830f5cef1014c0b5e4aa1.png"
+              alt="photo_user"
+              className='item'
+            />
+          </div>
         </div>
         <div className="card-content">
           <div className="media">
@@ -33,15 +42,6 @@ export const CardUser = ({ props }) => {
               <p className="title is-4">{username}</p>
               <p className="subtitle is-6">Rating: {puntuation}</p>
             </div>
-          </div>
-
-          <div className="content ">
-            {description}
-            <p href="#">#responsive</p>
-            <br />
-            <time>
-              Compartiendo conocimiento desde {create_at}
-            </time>
           </div>
         </div>
       </div>

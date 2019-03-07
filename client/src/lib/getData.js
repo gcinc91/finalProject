@@ -32,12 +32,16 @@ export class GetData{
         .catch(GetData.errorHandler) 
     }
 
-    static newclase(date, description){
-        return instance.post('/data/newclase', {date, description})
-        .then((res) => {
-            console.log('la clase se ha creado bien' + res.data)
-        })
+    static newclase(date, description, idProfe, idUserLogin){
+        return instance.post('/data/newclase', {date, description, idProfe, idUserLogin})
+        .then((res) => res.data)
         .catch('error en getdata newclase '+ GetData.errorHandler)
+    }
+
+    static impartirClases(id){
+        return instance.post('data/impartirClases', {id})
+        .then(res => res)
+        .catch(GetData.errorHandler) 
     }
 
     

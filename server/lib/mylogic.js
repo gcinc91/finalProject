@@ -29,6 +29,7 @@ function my_init() {
 
 
 function loggedInListener(roomName, otherPeers) {
+  roomName = 'pepe'
   var otherClientDiv = document.getElementById('otherClients');
   while (otherClientDiv.hasChildNodes()) {
       otherClientDiv.removeChild(otherClientDiv.lastChild);

@@ -5,16 +5,27 @@ import { AuthAPI } from "../lib/auth";
 import { login } from "../lib/Redux/actions";
 import { withRouter } from "react-router-dom";
 import { GetData } from "../lib/getData";
+import { NuevaClase } from "./NuevaClase";
 
 class _PerfilUser extends React.Component {
   constructor() {
     super();
     this.state = {
-      userProfe: ""
+      userProfe: "",
+      nuevaClase: false
     };
   }
 
-  thishandleClase(e) {}
+  handleClase() {
+    const { nuevaClase } = this.state;
+    const { user, history } = this.props;
+    if (user) {
+      this.setState({ nuevaClase: !nuevaClase });
+    } else {
+      this.setState({ nuevaClase: !nuevaClase });
+      history.push("/login");
+    }
+  }
 
   handleImgChange = e => {
     const { dispatch } = this.props;
@@ -35,48 +46,27 @@ class _PerfilUser extends React.Component {
     });
   }
 
+  setRedirect() {
+    const { history } = this.props;
+    history.push("/miprofile");
+  }
+
   render() {
     const { user } = this.props;
+    const { nuevaClase } = this.state;
 
     const { data } = this.props.userProfe;
     const userProfe = data;
-
-    // console.log(userProfe.username)
-    // console.log(user.username)
 
     return (
       <div>
         {user ? (
           <div>
             {user.username === userProfe.username ? (
-              <div>
-                <img className="" src={user.imgPath} alt="foto" />
-                <input
-                  type="file"
-                  onChange={e => this.handleImgChange(e)}
-                  name="name"
-                />
-                <p className="">{user.username}</p>
-
-                {user.selectedOptionDeveloper.map((e, i) => (
-                  <p key={i}>{e.value}</p>
-                ))}
-                {user.selectedOptionSysAdmin.map((e, i) => (
-                  <p key={i}>{e.value}</p>
-                ))}
-                <p className="">{user.mail}</p>
-                <p className="">{user.description}</p>
-
-                {/* <button onClick={() => thishandleClase()}> Quiero una Clase</button> */}
-              </div>
+              this.setRedirect()
             ) : (
               <div>
                 <img className="" src={userProfe.imgPath} alt="foto" />
-                <input
-                  type="file"
-                  onChange={e => this.handleImgChange(e)}
-                  name="name"
-                />
                 <p className="">{userProfe.username}</p>
 
                 {userProfe.selectedOptionDeveloper.map((e, i) => (
@@ -88,19 +78,22 @@ class _PerfilUser extends React.Component {
                 <p className="">{userProfe.mail}</p>
                 <p className="">{userProfe.description}</p>
 
-                {/* <button onClick={() => thishandleClase()}> Quiero una Clase</button> */}
-                <Link to="/newclase">Pideme una Clase</Link>
+                <div>
+                  <h2>Pideme una clase</h2>
+                  <label class="switch">
+                    <input type="checkbox" onClick={() => this.handleClase()} />
+                    <span class="slider round" />
+                  </label>
+                </div>
+                {nuevaClase ? (
+                  <NuevaClase props={userProfe} userLogin={user} />
+                ) : null}
               </div>
             )}
           </div>
         ) : (
           <div>
             <img className="" src={userProfe.imgPath} alt="foto" />
-            <input
-              type="file"
-              onChange={e => this.handleImgChange(e)}
-              name="name"
-            />
             <p className="">{userProfe.username}</p>
 
             {userProfe.selectedOptionDeveloper.map((e, i) => (
@@ -112,8 +105,16 @@ class _PerfilUser extends React.Component {
             <p className="">{userProfe.mail}</p>
             <p className="">{userProfe.description}</p>
 
-            {/* <button onClick={() => thishandleClase()}> Quiero una Clase</button> */}
-            <Link to="/newclase">Pideme una Clase</Link>
+            <div>
+              <h2>Pideme una clase</h2>
+              <label class="switch">
+                <input type="checkbox" onClick={() => this.handleClase()} />
+                <span class="slider round" />
+              </label>
+            </div>
+            {nuevaClase ? (
+              <NuevaClase props={userProfe} userLogin={user} />
+            ) : null}
           </div>
         )}
       </div>
