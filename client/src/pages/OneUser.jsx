@@ -25,9 +25,7 @@ class _OneUser extends React.Component {
 
 
   render() {
-    const { user } = this.props;
     const {userProfe} = this.state;
-    const {id} = this.props.match.params;
     return (
       <div className="">
         <Navbar />

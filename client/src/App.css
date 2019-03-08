@@ -96,10 +96,9 @@ video {
 
 .box{
   margin: 1em;
-  width: 300px;
+  width: 300px !important;
   background-color: #21364e !important;
   padding: 5px !important;
-  min-width: 20vw !important;
   overflow: hidden !important;
 }
 
@@ -217,4 +216,56 @@ input:checked + .slider:before {
   flex-direction:column;
   height: 60vh;
   line-height: 5em
+}
+
+.perfilContainer{
+  width: 290px;
+  height: 290px;
+}
+
+.imgPerfil{
+  width: 100%;
+  height: 100%;
+}
+.generalOther{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+.containerimgperfilOther{
+  margin: 2px auto !important;
+}
+
+.imgPerfilOther{
+  width: 40vw;
+  margin: 2em auto;
+}
+
+.nombreOther{
+ font-family: 'Times New Roman', Times, serif;
+ font-weight: bold;
+  font-size: 2em;
+}
+
+.containerDevs{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+.containerSys{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+.containerDescriptionOther{
+  width: 50vw;
 }

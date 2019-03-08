@@ -6,6 +6,17 @@ import { login } from "../lib/Redux/actions";
 import { withRouter } from "react-router-dom";
 import { GetData } from "../lib/getData";
 import { NuevaClase } from "./NuevaClase";
+import styled from 'styled-components';
+
+
+const Nombre = styled.p`
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+body{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 2.5rem;
+}
+`
 
 class _PerfilUser extends React.Component {
   constructor() {
@@ -65,18 +76,31 @@ class _PerfilUser extends React.Component {
             {user.username === userProfe.username ? (
               this.setRedirect()
             ) : (
-              <div>
-                <img className="" src={userProfe.imgPath} alt="foto" />
-                <p className="">{userProfe.username}</p>
+              <div className="generalOther">
+                <div className='containerimgperfilOther'>
+                  <img
+                    className="imgPerfilOther"
+                    src={userProfe.imgPath}
+                    alt="foto"
+                  />
+                  <p className='nombreOther'>{userProfe.username}</p>
+                </div>
+                <div className='containerDevs'>
 
                 {userProfe.selectedOptionDeveloper.map((e, i) => (
-                  <p key={i}>{e.value}</p>
-                ))}
+                  <p key={i}>{e.value}  &nbsp;</p>
+                  ))}
+                  </div>
+                  <div className='containerSys'>
                 {userProfe.selectedOptionSysAdmin.map((e, i) => (
-                  <p key={i}>{e.value}</p>
-                ))}
-                <p className="">{userProfe.mail}</p>
-                <p className="">{userProfe.description}</p>
+                  <p key={i}>{e.value} &nbsp; </p>
+                  ))}
+                  </div>
+                <p className=""> Escribeme un correo a {userProfe.mail}</p>
+                <label>Un poco de mi...</label>
+                <div className='containerDescriptionOther'>
+                <p >{userProfe.description}</p>
+                </div>
 
                 <div>
                   <h2>Pideme una clase</h2>
