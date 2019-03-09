@@ -208,7 +208,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.containerClases{
+/* .containerClases{
   display:flex;
   justify-content: center;
   align-content: center;
@@ -216,7 +216,7 @@ input:checked + .slider:before {
   flex-direction:column;
   height: 60vh;
   line-height: 5em
-}
+} */
 
 .perfilContainer{
   width: 290px;
@@ -312,9 +312,50 @@ input:checked + .slider:before {
   display: flex !important;
   flex-direction: row !important;
   justify-content: center !important;
+  margin-bottom: 2em;
 }
 
 .unPoco{
   font-size: 2em;
   font-weight: bold;
+}
+.darMargen{
+  margin: 5em;
+}
+.darMargen2{
+  margin: 2em;
+}
+
+.verClases{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+}
+
+.parrafoExplicacion{
+  width: 40vw;
+}
+
+.informationGeneral{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+.imgInformation{
+  width: 40vw;
+  margin: 5em auto;
+}
+.labelInformation{
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.parrafoExplicacion p{
+  margin-top: 2em;
+}
+
+.porAbajo{
+  margin-bottom: 2em;
 }

@@ -56,4 +56,5 @@ export class GetData{
         .then(res => res.data)
         .catch(GetData.errorHandler) 
     }
+   
 } 

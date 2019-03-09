@@ -74,9 +74,6 @@ router.post("/impartirClases", (req, res) => {
 
 router.post("/tengoAprender", (req, res) => {
   let { id } = req.body;
-  console.log('id')
-  console.log(id)
-  if (id != ''){
 
     Clase.findById(id)
     .then(clase => {
@@ -84,7 +81,7 @@ router.post("/tengoAprender", (req, res) => {
       res.json(clase)}
       )
       .catch(e => "error del back, llamada a users " + e);
-    }
+    
 });
 
 router.post("/searchTech", (req, res) => {

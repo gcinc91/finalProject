@@ -42,7 +42,7 @@ function loggedInListener(roomName, otherPeers) {
           }
       }(i);
 
-      label = document.createTextNode(i);
+      label = document.createTextNode('iniciar Videollamada');
       button.appendChild(label);
       otherClientDiv.appendChild(button);
   }

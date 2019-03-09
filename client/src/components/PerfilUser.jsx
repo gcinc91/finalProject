@@ -1,22 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { AuthAPI } from "../lib/auth";
 import { login } from "../lib/Redux/actions";
 import { withRouter } from "react-router-dom";
 import { GetData } from "../lib/getData";
 import { NuevaClase } from "./NuevaClase";
-import styled from "styled-components";
 
-const Nombre = styled.p`
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-  @import url("https://fonts.googleapis.com/css?family=Lobster");
-  body {
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-      "Lucida Sans", Arial, sans-serif;
-    font-size: 2.5rem;
-  }
-`;
+
 
 class _PerfilUser extends React.Component {
   constructor() {
@@ -32,11 +22,12 @@ class _PerfilUser extends React.Component {
     const { user, history } = this.props;
     if (user) {
       this.setState({ nuevaClase: !nuevaClase });
-      window.scrollTo(0, document.body.scrollHeight);
+      
     } else {
       this.setState({ nuevaClase: !nuevaClase });
       history.push("/login");
     }
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   handleImgChange = e => {
@@ -106,7 +97,7 @@ class _PerfilUser extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className='porAbajo'>
                   <div className="getClase">
                     <h2>Pideme una clase &nbsp;</h2>
                     <label class="switch">

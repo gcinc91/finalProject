@@ -15,7 +15,8 @@ class _MiProfile extends React.Component {
       verClaseTeacher: false,
       verClasePendiente: false,
       clasesArr: [],
-      learninsgArr: []
+      learninsgArr: [],
+      array: []
     };
   }
 
@@ -50,35 +51,26 @@ class _MiProfile extends React.Component {
   viewLearnings() {
     const { verClasePendiente, learninsgArr } = this.state;
     const { user } = this.props;
-    const arr = [];
-    const promise = user.clasesPendientes.map(id => {
-      return GetData.tengoAprender(id)
-        .then(clases => arr.push(clases))
-        .catch(console.log("problema al obtener clase pendiente"))
-         
-    });
-    Promise.all(promise)
-      .then(this.setState({ learninsgArr: arr }))
-      .catch(e => "todo mal");
-    this.setState({ verClasePendiente: !verClasePendiente });
+    user.clasesPendientes.map(id =>
+      GetData.tengoAprender(id).then(clase => {
+        this.setState({ learninsgArr });
+        this.setState({ verClasePendiente: !verClasePendiente });
+      })
+    );
+    console.log(this.state.array);
   }
 
   render() {
     const { user } = this.props;
     const { verClasePendiente, verClaseTeacher } = this.state;
 
-    console.log(this.state.learninsgArr);
-    console.log(this.state.verClasePendiente);
-
-    console.log("nueva ronda");
-
     return (
       <div>
         <Navbar />
         {user ? (
-          <div>
-            <div className="boxesPerfil">
-              <section className="imageProfile">
+          <React.Fragment>
+            <div className="generalOther darMargen">
+              <div className="containerimgperfilOther">
                 <img src={user.imgPath} alt="foto" width="400" />
                 <input
                   type="file"
@@ -86,46 +78,57 @@ class _MiProfile extends React.Component {
                   name="name"
                   className="button is-info is-inverted"
                 />
-              </section>
-
-              <section className="seccionDatos imageProfile ">
-                <p className="">{user.username}</p>
-
-                {user.selectedOptionDeveloper.map((e, i) => (
-                  <p key={i}>{e.value}</p>
-                ))}
-                {user.selectedOptionSysAdmin.map((e, i) => (
-                  <p key={i}>{e.value}</p>
-                ))}
-                <p className="">{user.mail}</p>
-                <p className="">{user.description}</p>
-                <button onClick={() => this.handleLogout()}>LOGOUT</button>
-              </section>
+              </div>
+              <div className="containerInformation darMargen">
+                <p className="nombreOther">{user.username}</p>
+                <div className="containerDevs">
+                  {user.selectedOptionDeveloper.map((e, i) => (
+                    <p key={i}>{e.value} &nbsp;</p>
+                  ))}
+                </div>
+                <div className="containerSys">
+                  {user.selectedOptionSysAdmin.map((e, i) => (
+                    <p key={i}>{e.value} &nbsp;</p>
+                  ))}
+                </div>
+                <p className="">Mi correo: {user.mail}</p>
+                <div className="darMargen2">
+                  <label className="unPoco">Mi descripcion</label>
+                  <p className="">{user.description}</p>
+                </div>
+                <button
+                  className="button is-medium is-danger"
+                  onClick={() => this.handleLogout()}
+                >
+                  LOGOUT
+                </button>
+              </div>
             </div>
+            <div className="verClases">
+              <div className="containerClases">
+                <h1>Clases a impartir</h1>
+                <label className="switch">
+                  <input type="checkbox" onClick={() => this.viewClases()} />
+                  <span className="slider round" />
+                </label>
 
-            <div className="containerClases">
-              <h1>Clases a impartir</h1>
-              <label className="switch">
-                <input type="checkbox" onClick={() => this.viewClases()} />
-                <span className="slider round" />
-              </label>
+                {verClaseTeacher ? (
+                  <MisClases clases={this.state.clasesArr} />
+                ) : null}
+              </div>
+              <div className="containerClases">
+                <h1>Tengo que aprender</h1>
+                <label className="switch">
+                  <input type="checkbox" onClick={() => this.viewLearnings()} />
+                  <span className="slider round" />
+                </label>
 
-              {verClaseTeacher ? (
-                <MisClases clases={this.state.clasesArr} />
-              ) : null}
+                {verClasePendiente ? (
+                  <MisClases clases={this.state.learninsgArr} />
+                ) : null}
+              </div>
             </div>
-            <div className="containerClases">
-              <h1>Tengo que aprender</h1>
-              <label className="switch">
-                <input type="checkbox" onClick={() => this.viewLearnings()} />
-                <span className="slider round" />
-              </label>
-
-              {verClasePendiente ? (
-                <MisClases clases={this.state.learninsgArr} />
-              ) : null}
-            </div>
-          </div>
+          </React.Fragment>
         ) : (
           <div className="boxLogin">
             <p> Tienes que estar logado para poder ver tu perfil </p>

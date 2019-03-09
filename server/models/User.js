@@ -10,7 +10,7 @@ const userSchema = new Schema({
   selectedOptionDeveloper: {type: Array, default: {value: ''}},
   selectedOptionSysAdmin: {type: Array, default: {value: ''}},
   clasesPendientes: {type: Array, default:['']},
-  imgPath: {type: String, default: 'https://res.cloudinary.com/drlexgkiu/image/upload/v1544976860/avatar_2x.png'},
+  imgPath: {type: String, default: 'http://imageneslindasparadescargar.com/wp-content/uploads/2016/08/fotos-perfil-whatsapp-graciosas.jpg'},
 }, {
   timestamps: {
     createdAt: 'created_at',

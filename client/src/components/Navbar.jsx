@@ -95,10 +95,9 @@ class _Navbar extends React.Component {
 					<li className="slam-left"><Link to="/"><img src="https://seeklogo.com/images/L/left-and-right-side-of-the-brain-logo-67B4F429CE-seeklogo.com.png" alt="logo" width='50'/></Link></li>
 					<li ><Link className="items lis" to="/login">Login</Link></li>
 					<li ><Link className="items lis" to="/signup">Singup</Link></li>
-					<li ><Link className="items lis" to="/aboutus">About Us</Link></li>
-					<li ><Link className="items lis" to="/vcall">Video Llamada</Link></li>
+					<li ><Link className="items lis" to="/explora">Explora</Link></li>
           {user ?
-          <li ><Link className="items lis" to="/miprofile">Perfil</Link></li>
+          <li ><Link className="items lis" to="/miprofile">Mi Perfil</Link></li>
             :
             null
           }

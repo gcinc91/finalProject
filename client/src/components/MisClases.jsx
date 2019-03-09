@@ -6,10 +6,9 @@ const moment = require("moment");
 export const MisClases = ({ clases }) => {
   console.log(clases)
   return (
-    <div>
-      {clases.map((clase) => (
-        <div>
-        {console.log(clase)}
+      <div>
+      {clases.map((clase, i) => (
+        <div key={i}>
         <p>{clase.description}</p>
         <p>{moment(clase.date).add(1, 'day').format('LLL')}</p>
         <Link to={`/vcall/${clase._id}`}>
@@ -17,6 +16,6 @@ export const MisClases = ({ clases }) => {
       </Link>
         </div>
       ))}
-    </div>
-  );
-};
+      </div>
+      );
+    };
