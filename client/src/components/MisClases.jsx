@@ -4,12 +4,12 @@ const moment = require("moment");
 
 
 export const MisClases = ({ clases }) => {
-  console.log('clases')
   console.log(clases)
   return (
     <div>
       {clases.map((clase) => (
         <div>
+        {console.log(clase)}
         <p>{clase.description}</p>
         <p>{moment(clase.date).add(1, 'day').format('LLL')}</p>
         <Link to={`/vcall/${clase._id}`}>

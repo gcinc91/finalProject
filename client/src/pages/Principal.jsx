@@ -5,13 +5,11 @@ import { AllUsers } from "../components/AllUsers";
 
 export class _Principal extends React.Component {
   render() {
-    const { user } = this.props;
-    console.log(user);
-
+    
     return (
       <div>
         <Navbar />
-        <AllUsers />
+        <AllUsers  />
       </div>
     );
   }

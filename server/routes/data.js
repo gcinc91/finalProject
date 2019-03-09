@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const Clase = require("../models/Clase");
+const { regularExp } = require("../lib/helper");
 const mongoose = require("mongoose");
 
 router.post("/users", (req, res) => {
@@ -48,8 +49,8 @@ router.post("/newclase", (req, res) => {
         { _id: idUserLogin },
         { $push: { clasesPendientes: data._id } },
         { new: true }
-      ).then(res => console.log("clase guardada en usuario"));
-      res.json({ message: "Clase guardada correctamente" });
+      ).then(user => {console.log("clase guardada en usuario")
+      res.json({ message: "Clase guardada correctamente" })})
     })
     .catch(err => {
       console.log("error del cathc clasedata back");
@@ -70,12 +71,30 @@ router.post("/impartirClases", (req, res) => {
     .then(clase => res.json(clase))
     .catch(e => "error del back, llamada a users " + e);
 });
+
 router.post("/tengoAprender", (req, res) => {
   let { id } = req.body;
+  console.log('id')
+  console.log(id)
+  if (id != ''){
 
-  Clase.findById( id)
+    Clase.findById(id)
     .then(clase => {
+      console.log(clase)
       res.json(clase)}
+      )
+      .catch(e => "error del back, llamada a users " + e);
+    }
+});
+
+router.post("/searchTech", (req, res) => {
+  let { filter } = req.body;
+  console.log(filter)
+  const reg = regularExp(filter)
+
+  User.find({ $or:[ {'username': reg}, {selectedOptionDeveloper: {$elemMatch: {value: reg , label: reg}}}, {selectedOptionSysAdmin: {$elemMatch: {value: reg , label: reg}}} ] })
+    .then(user => {
+      res.json(user)}
     )
     .catch(e => "error del back, llamada a users " + e);
 });

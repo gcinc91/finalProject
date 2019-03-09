@@ -50,7 +50,6 @@ router.post("/signup", (req, res, next) => {
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
-      console.log('te va devolver el mensaje')
       return res.json({ message: "El usuario ya existe" });
     }
     

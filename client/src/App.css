@@ -229,7 +229,7 @@ input:checked + .slider:before {
 }
 .generalOther{
   display: flex !important;
-  flex-direction: column !important;
+  flex-direction: row !important;
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
@@ -256,6 +256,7 @@ input:checked + .slider:before {
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
+  color: blue;
 }
 
 .containerSys{
@@ -264,8 +265,56 @@ input:checked + .slider:before {
   justify-content: center !important;
   align-content: center !important;
   align-items: center !important;
+  color: darkgreen
 }
 
 .containerDescriptionOther{
   width: 50vw;
+  border: solid 5px #436b95;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 1em;
+}
+
+.barraBusqueda{
+  width: 80vw;
+}
+.containerBarra{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 2em auto;
+}
+.titlePrinc{
+  display: flex;
+  justify-content: center;
+  margin: 1em auto;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.labelBarra{
+  margin: 10px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.containerInformation{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-content: center !important;
+  align-items: center !important;
+}
+
+.getClase{
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+}
+
+.unPoco{
+  font-size: 2em;
+  font-weight: bold;
 }

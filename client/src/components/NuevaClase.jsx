@@ -80,7 +80,6 @@ handleSubmit() {
   const {_id} = this.props.props;
   const idUserLogin = this.props.userLogin._id;
   const idProfe = _id;
-  console.log(idUserLogin)
   GetData.newclase(
     date,
     description,

@@ -40,7 +40,7 @@ class _MiProfile extends React.Component {
   }
 
   viewClases() {
-    const { verClaseTeacher, clasesArr } = this.state;
+    const { verClaseTeacher } = this.state;
     const { user } = this.props;
     GetData.impartirClases(user._id).then(clases => {
       this.setState({ clasesArr: clases });
@@ -50,19 +50,27 @@ class _MiProfile extends React.Component {
   viewLearnings() {
     const { verClasePendiente, learninsgArr } = this.state;
     const { user } = this.props;
-    user.clasesPendientes.map(id =>
-      GetData.tengoAprender(id).then(clases => {
-        learninsgArr.push(clases)
-        this.setState({ learninsgArr});
-      })
-    );
+    const arr = [];
+    const promise = user.clasesPendientes.map(id => {
+      return GetData.tengoAprender(id)
+        .then(clases => arr.push(clases))
+        .catch(console.log("problema al obtener clase pendiente"))
+         
+    });
+    Promise.all(promise)
+      .then(this.setState({ learninsgArr: arr }))
+      .catch(e => "todo mal");
     this.setState({ verClasePendiente: !verClasePendiente });
   }
 
   render() {
     const { user } = this.props;
-    const { verClasePendiente, verClaseTeacher} = this.state;
-    //console.log(this.state.learninsgArr)
+    const { verClasePendiente, verClaseTeacher } = this.state;
+
+    console.log(this.state.learninsgArr);
+    console.log(this.state.verClasePendiente);
+
+    console.log("nueva ronda");
 
     return (
       <div>
@@ -97,21 +105,25 @@ class _MiProfile extends React.Component {
 
             <div className="containerClases">
               <h1>Clases a impartir</h1>
-              <label class="switch">
+              <label className="switch">
                 <input type="checkbox" onClick={() => this.viewClases()} />
-                <span class="slider round" />
+                <span className="slider round" />
               </label>
 
-              {verClaseTeacher ? <MisClases clases={this.state.clasesArr} /> : null}
+              {verClaseTeacher ? (
+                <MisClases clases={this.state.clasesArr} />
+              ) : null}
             </div>
             <div className="containerClases">
               <h1>Tengo que aprender</h1>
-              <label class="switch">
+              <label className="switch">
                 <input type="checkbox" onClick={() => this.viewLearnings()} />
-                <span class="slider round" />
+                <span className="slider round" />
               </label>
 
-              {verClasePendiente ? <MisClases clases={this.state.learninsgArr} /> : null}
+              {verClasePendiente ? (
+                <MisClases clases={this.state.learninsgArr} />
+              ) : null}
             </div>
           </div>
         ) : (

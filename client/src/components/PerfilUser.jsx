@@ -6,17 +6,17 @@ import { login } from "../lib/Redux/actions";
 import { withRouter } from "react-router-dom";
 import { GetData } from "../lib/getData";
 import { NuevaClase } from "./NuevaClase";
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 const Nombre = styled.p`
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-@import url("https://fonts.googleapis.com/css?family=Lobster");
-body{
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 2.5rem;
-}
-`
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+  @import url("https://fonts.googleapis.com/css?family=Lobster");
+  body {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+    font-size: 2.5rem;
+  }
+`;
 
 class _PerfilUser extends React.Component {
   constructor() {
@@ -32,6 +32,7 @@ class _PerfilUser extends React.Component {
     const { user, history } = this.props;
     if (user) {
       this.setState({ nuevaClase: !nuevaClase });
+      window.scrollTo(0, document.body.scrollHeight);
     } else {
       this.setState({ nuevaClase: !nuevaClase });
       history.push("/login");
@@ -40,7 +41,6 @@ class _PerfilUser extends React.Component {
 
   handleImgChange = e => {
     const { dispatch } = this.props;
-    console.log(this.props);
     const name = this.username;
     let file = new FormData();
     file.set("name", name);
@@ -76,70 +76,98 @@ class _PerfilUser extends React.Component {
             {user.username === userProfe.username ? (
               this.setRedirect()
             ) : (
-              <div className="generalOther">
-                <div className='containerimgperfilOther'>
-                  <img
-                    className="imgPerfilOther"
-                    src={userProfe.imgPath}
-                    alt="foto"
-                  />
-                  <p className='nombreOther'>{userProfe.username}</p>
-                </div>
-                <div className='containerDevs'>
-
-                {userProfe.selectedOptionDeveloper.map((e, i) => (
-                  <p key={i}>{e.value}  &nbsp;</p>
-                  ))}
+              <React.Fragment>
+                <div className="generalOther">
+                  <div className="containerimgperfilOther">
+                    <img
+                      className="imgPerfilOther"
+                      src={userProfe.imgPath}
+                      alt="foto"
+                    />
                   </div>
-                  <div className='containerSys'>
-                {userProfe.selectedOptionSysAdmin.map((e, i) => (
-                  <p key={i}>{e.value} &nbsp; </p>
-                  ))}
+                  <div className="containerInformation">
+                    <p className="nombreOther">{userProfe.username}</p>
+                    <div className="containerDevs">
+                      {userProfe.selectedOptionDeveloper.map((e, i) => (
+                        <p key={i}>{e.value} &nbsp;</p>
+                      ))}
+                    </div>
+                    <div className="containerSys">
+                      {userProfe.selectedOptionSysAdmin.map((e, i) => (
+                        <p key={i}>{e.value} &nbsp; </p>
+                      ))}
+                    </div>
+                    <p className=""> Escribeme un correo a {userProfe.mail}</p>
+                    <div>
+                      <label className="unPoco">Un poco de mi...</label>
+                      <div className="containerDescriptionOther field">
+                        <p>{userProfe.description}</p>
+                      </div>
+                    </div>
                   </div>
-                <p className=""> Escribeme un correo a {userProfe.mail}</p>
-                <label>Un poco de mi...</label>
-                <div className='containerDescriptionOther'>
-                <p >{userProfe.description}</p>
                 </div>
-
                 <div>
-                  <h2>Pideme una clase</h2>
-                  <label class="switch">
-                    <input type="checkbox" onClick={() => this.handleClase()} />
-                    <span class="slider round" />
-                  </label>
+                  <div className="getClase">
+                    <h2>Pideme una clase &nbsp;</h2>
+                    <label class="switch">
+                      <input
+                        type="checkbox"
+                        onClick={() => this.handleClase()}
+                      />
+                      <span class="slider round" />
+                    </label>
+                  </div>
+                  {nuevaClase ? (
+                    <NuevaClase props={userProfe} userLogin={user} />
+                  ) : null}
                 </div>
-                {nuevaClase ? (
-                  <NuevaClase props={userProfe} userLogin={user} />
-                ) : null}
-              </div>
+              </React.Fragment>
             )}
           </div>
         ) : (
-          <div>
-            <img className="" src={userProfe.imgPath} alt="foto" />
-            <p className="">{userProfe.username}</p>
-
-            {userProfe.selectedOptionDeveloper.map((e, i) => (
-              <p key={i}>{e.value}</p>
-            ))}
-            {userProfe.selectedOptionSysAdmin.map((e, i) => (
-              <p key={i}>{e.value}</p>
-            ))}
-            <p className="">{userProfe.mail}</p>
-            <p className="">{userProfe.description}</p>
-
-            <div>
-              <h2>Pideme una clase</h2>
-              <label class="switch">
-                <input type="checkbox" onClick={() => this.handleClase()} />
-                <span class="slider round" />
-              </label>
+          <React.Fragment>
+            <div className="generalOther">
+              <div className="containerimgperfilOther">
+                <img
+                  className="imgPerfilOther"
+                  src={userProfe.imgPath}
+                  alt="foto"
+                />
+              </div>
+              <div className="containerInformation">
+                <p className="nombreOther">{userProfe.username}</p>
+                <div className="containerDevs">
+                  {userProfe.selectedOptionDeveloper.map((e, i) => (
+                    <p key={i}>{e.value} &nbsp;</p>
+                  ))}
+                </div>
+                <div className="containerSys">
+                  {userProfe.selectedOptionSysAdmin.map((e, i) => (
+                    <p key={i}>{e.value} &nbsp; </p>
+                  ))}
+                </div>
+                <p className=""> Escribeme un correo a {userProfe.mail}</p>
+                <div>
+                  <label className="unPoco">Un poco de mi...</label>
+                  <div className="containerDescriptionOther field">
+                    <p>{userProfe.description}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            {nuevaClase ? (
-              <NuevaClase props={userProfe} userLogin={user} />
-            ) : null}
-          </div>
+            <div>
+              <div className="getClase">
+                <h2>Pideme una clase &nbsp;</h2>
+                <label class="switch">
+                  <input type="checkbox" onClick={() => this.handleClase()} />
+                  <span class="slider round" />
+                </label>
+              </div>
+              {nuevaClase ? (
+                <NuevaClase props={userProfe} userLogin={user} />
+              ) : null}
+            </div>
+          </React.Fragment>
         )}
       </div>
     );

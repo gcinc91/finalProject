@@ -17,24 +17,25 @@ export class GetData{
 
     static users(filter='playa'){
         return instance.post('/data/users', {filter})
-        .then((res) => res.data)
+        .then(res => res.data)
         .catch(GetData.errorHandler)
     }
 
     static allusers(){
         return instance.post('/data/allusers')
-        .then((res) => res.data)
+        .then(res => res.data)
         .catch(GetData.errorHandler)
     }
+
     static user(id){
         return instance.post('data/user/:id', {id})
-        .then((res) => res)
+        .then(res => res)
         .catch(GetData.errorHandler) 
     }
 
     static newclase(date, description, idProfe, idUserLogin){
         return instance.post('/data/newclase', {date, description, idProfe, idUserLogin})
-        .then((res) => res.data)
+        .then(res => res.data)
         .catch('error en getdata newclase '+ GetData.errorHandler)
     }
 
@@ -43,11 +44,16 @@ export class GetData{
         .then(res => res.data)
         .catch(GetData.errorHandler) 
     }
+
     static tengoAprender(id){
         return instance.post('data/tengoAprender', {id})
         .then(res => res.data)
-        .catch(GetData.errorHandler) 
+        .catch(err => console.log(err)) 
     }
 
-    
-}
+    static searchTech(filter){
+        return instance.post('data/searchTech', {filter})
+        .then(res => res.data)
+        .catch(GetData.errorHandler) 
+    }
+} 
