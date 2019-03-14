@@ -28,29 +28,21 @@ router.post("/newclase", (req, res) => {
   const description = req.body.description;
   const idProfe = req.body.idProfe;
   const idUserLogin = req.body.idUserLogin;
-  
- 
 
   if (date === null || description === "") {
-    console.log("aqui llega");
     return res.json({ message: "Tienes que poner fecha, hora  y descripcion" });
   }
-  console.log("id del profe " + idProfe);
+
   const Clasedata = new Clase({
     date,
     description,
-    id_user_teacher: idProfe
+    id_user_teacher: idProfe,
+    id_user_alumni: idUserLogin
   });
 
   Clasedata.save()
     .then(data => {
-      console.log(data);
-      User.findByIdAndUpdate(
-        { _id: idUserLogin },
-        { $push: { clasesPendientes: data._id } },
-        { new: true }
-      ).then(user => {console.log("clase guardada en usuario")
-      res.json({ message: "Clase guardada correctamente" })})
+      res.json({ message: "Clase guardada correctamente" });
     })
     .catch(err => {
       console.log("error del cathc clasedata back");
@@ -75,24 +67,28 @@ router.post("/impartirClases", (req, res) => {
 router.post("/tengoAprender", (req, res) => {
   let { id } = req.body;
 
-    Clase.findById(id)
+  Clase.find({id_user_alumni: id})
     .then(clase => {
-      console.log(clase)
-      res.json(clase)}
-      )
-      .catch(e => "error del back, llamada a users " + e);
-    
+      res.json(clase);
+    })
+    .catch(e => "error del back, llamada a users " + e);
 });
 
 router.post("/searchTech", (req, res) => {
   let { filter } = req.body;
-  console.log(filter)
-  const reg = regularExp(filter)
+  console.log(filter);
+  const reg = regularExp(filter);
 
-  User.find({ $or:[ {'username': reg}, {selectedOptionDeveloper: {$elemMatch: {value: reg , label: reg}}}, {selectedOptionSysAdmin: {$elemMatch: {value: reg , label: reg}}} ] })
+  User.find({
+    $or: [
+      { username: reg },
+      { selectedOptionDeveloper: { $elemMatch: { value: reg, label: reg } } },
+      { selectedOptionSysAdmin: { $elemMatch: { value: reg, label: reg } } }
+    ]
+  })
     .then(user => {
-      res.json(user)}
-    )
+      res.json(user);
+    })
     .catch(e => "error del back, llamada a users " + e);
 });
 
